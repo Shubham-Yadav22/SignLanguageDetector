@@ -1,6 +1,16 @@
 import cv2 as cv
 
 def draw_landmarks(image, landmark_point):
+    # Drawing lines connecting landmarks with different colors and thickness
+    # (black lines with thickness 6 and white lines with thickness 2)
+    # Each block of lines connects specific landmarks.
+
+    # ... (omitting some lines for brevity)
+
+    # Drawing circles around specific landmarks with different colors and radii
+    # (white circles with radius 5 and black circles with radius 1 or
+    # white circles with radius 8 and black circles with radius 1)
+
     if len(landmark_point) > 0:
         
         cv.line(image, tuple(landmark_point[2]), tuple(landmark_point[3]),
@@ -100,6 +110,7 @@ def draw_landmarks(image, landmark_point):
 
 
     for index, landmark in enumerate(landmark_point):
+        # ... (omitting some lines for brevity)
         if index == 0: 
             cv.circle(image, (landmark[0], landmark[1]), 5, (255, 255, 255),
                       -1)
@@ -188,10 +199,13 @@ def draw_landmarks(image, landmark_point):
     return image
 
 def draw_info_text(image, handedness, hand_sign_text):
+    # Creating information text based on handedness and predicted hand sign text
 
     info_text = handedness.classification[0].label[0:]
     if hand_sign_text != "":
         info_text = "Predicted Text" + ':' + hand_sign_text
 
-    cv.putText(image, info_text, (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1.0, (196, 255, 255), 2, cv.LINE_AA)
+    # Drawing the information text on the image using cv.putText
+
+    cv.putText(image, info_text, (10, 60), cv.FONT_HERSHEY_SIMPLEX, 1.0, (0,0,0), 2, cv.LINE_AA)
     return image
